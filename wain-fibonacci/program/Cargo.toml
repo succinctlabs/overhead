@@ -7,5 +7,5 @@ publish = false
 
 [dependencies]
 sp1-zkvm = "4.1.0"
-wain-exec = "0.3"
+wain-exec = "0.2.0"
 wain-syntax-binary = "0.1.5"

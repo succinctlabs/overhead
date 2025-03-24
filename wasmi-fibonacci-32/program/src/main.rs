@@ -4,7 +4,7 @@ use wasmi::*;
 
 /// This WASM was built using wat2wasm (https://webassembly.github.io/wabt/demo/wat2wasm/)
 /// The original .wat file is available at ../../../fib.wat
-const WASM: &[u8] = include_bytes!("../../../fib.wasm");
+const WASM: &[u8] = include_bytes!("../../../fib-32.wasm");
 
 pub fn main() {
     // Write n to public input.

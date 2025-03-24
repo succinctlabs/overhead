@@ -6,12 +6,12 @@
 sp1_zkvm::entrypoint!(main);
 use std::u64;
 
-use revm::primitives::Bytes;
-use revm::primitives::{Bytecode, CancunSpec};
-use revm_interpreter::analysis::to_analysed;
-use revm_interpreter::opcode::InstructionTable;
-use revm_interpreter::DummyHost;
-use revm_interpreter::{Contract, Interpreter, EMPTY_SHARED_MEMORY, BytecodeLocked};
+use reth_revm::primitives::Bytes;
+use reth_revm::primitives::{Bytecode, CancunSpec};
+use reth_revm::interpreter::analysis::to_analysed;
+use reth_revm::interpreter::opcode::InstructionTable;
+use reth_revm::interpreter::DummyHost;
+use reth_revm::interpreter::{Contract, Interpreter, EMPTY_SHARED_MEMORY, BytecodeLocked};
 
 /// The bytecode we want to execute inside the EVM.
 /// This is compiled from `../../../fib.sol` using Remix, an online solidity compiler.
@@ -54,11 +54,11 @@ pub fn main() {
 
     // The Revm interpreter requires a host that stores information about the execution context.
     // Since we're only executing a pure function, we set up a dummy host.
-    let mut host = crate::DummyHost::default();
+    let mut host = DummyHost::default();
     
     // We get an instruction table from the Cancun Spec.
     let table: &InstructionTable<DummyHost> =
-        &revm_interpreter::opcode::make_instruction_table::<DummyHost, CancunSpec>();
+        &reth_revm::interpreter::opcode::make_instruction_table::<DummyHost, CancunSpec>();
     println!("cycle-tracker-end: set up runtime");
 
     // Finally, we run the interpreter.
