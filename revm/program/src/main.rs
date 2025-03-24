@@ -6,12 +6,12 @@
 sp1_zkvm::entrypoint!(main);
 use std::u64;
 
-use reth_revm::primitives::Bytes;
-use reth_revm::primitives::{Bytecode, CancunSpec};
-use reth_revm::interpreter::analysis::to_analysed;
-use reth_revm::interpreter::opcode::InstructionTable;
-use reth_revm::interpreter::DummyHost;
-use reth_revm::interpreter::{Contract, Interpreter, EMPTY_SHARED_MEMORY, BytecodeLocked};
+use revm::primitives::Bytes;
+use revm::primitives::{Bytecode, CancunSpec};
+use revm_interpreter::analysis::to_analysed;
+use revm_interpreter::opcode::InstructionTable;
+use revm_interpreter::DummyHost;
+use revm_interpreter::{Contract, Interpreter, EMPTY_SHARED_MEMORY};
 
 /// The bytecode we want to execute inside the EVM.
 /// This is compiled from `../../../fib.sol` using Remix, an online solidity compiler.
@@ -24,7 +24,7 @@ pub fn main() {
     sp1_zkvm::io::commit(&n);
 
     // First, we need to format the call data.
-    // 
+    //
     // The call data starts with the function selector.
     let mut call_data_raw = hex::decode("f9b7c7e5").unwrap();
 
@@ -35,30 +35,31 @@ pub fn main() {
     let input = Bytes::from(call_data_raw);
 
     // We also need to read the bytecode from `BYTECODE_STR`.
-    let bytecode = BytecodeLocked::new_raw(
-        Bytes::copy_from_slice(&hex::decode(BYTECODE_STR).unwrap())
+    let bytecode = to_analysed(
+        Bytecode::new_raw_checked(Bytes::copy_from_slice(&hex::decode(BYTECODE_STR).unwrap()))
+            .unwrap(),
     );
     println!("cycle-tracker-end: set up input");
 
     // To set up the interpreter, we first instantiate it with the input and bytecode.
     println!("cycle-tracker-start: set up runtime");
     let mut interp = Interpreter::new(
-        Box::new(Contract {
+        Contract {
             input,
             bytecode,
             ..Default::default()
-        }),
+        },
         u64::MAX,
         true,
     );
 
     // The Revm interpreter requires a host that stores information about the execution context.
     // Since we're only executing a pure function, we set up a dummy host.
-    let mut host = DummyHost::default();
-    
+    let mut host = crate::DummyHost::default();
+
     // We get an instruction table from the Cancun Spec.
     let table: &InstructionTable<DummyHost> =
-        &reth_revm::interpreter::opcode::make_instruction_table::<DummyHost, CancunSpec>();
+        &revm_interpreter::opcode::make_instruction_table::<DummyHost, CancunSpec>();
     println!("cycle-tracker-end: set up runtime");
 
     // Finally, we run the interpreter.
