@@ -10,8 +10,8 @@ publish = false
 sp1-zkvm = "4.1.0"
 
 # EVM
-revm-interpreter = "9.0.0"
-revm = { version = "13.0.0", features = ["serde"], default-features = false }
+revm-interpreter = { git = "https://github.com/succinctlabs/revm", package = "revm-interpreter", branch = "main" }
+revm = { git = "https://github.com/succinctlabs/revm", branch = "main", features = ["serde"], default-features = false }
 
 # Misc
 hex = "0.4.3"

@@ -1,6 +1,11 @@
 [workspace]
 members = [
-  "wasmi-fibonacci/script",
+  "wasmi-fibonacci-32/script",
+  "wasmi-fibonacci-32/program",
+  "wasmi-fibonacci-64/script",
+  "wasmi-fibonacci-64/program",
+  "wasmi-fibonacci-128/script",
+  "wasmi-fibonacci-128/program",
   "wain-fibonacci/script",
   "fibonacci-32/script",
   "fibonacci-32/program",

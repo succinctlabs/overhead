@@ -1,0 +1,12 @@
+[package]
+name = "wasmi-fibonacci-128-program"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+sp1-zkvm = { workspace = true }
+sp1-derive = { workspace = true }
+wasmi = "0.29.0"
+wat = "1.216.0"
+uint = { version = "0.9.5", default-features = false }

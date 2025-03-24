@@ -18,16 +18,17 @@ fn main() {
     // Create a `ProverClient` method.
     let client = ProverClient::new();
 
-    // Execute the program using the `ProverClient.execute` method, without generating a proof.
-    let (_, report) = client.execute(ELF, stdin.clone()).run().unwrap();
-    println!(
-        "executed program with {} cycles",
-        report.total_instruction_count()
-    );
+    // Execute the program.
+    println!("cycle-tracker-start: execute");
+    let (_, report) = client.execute(ELF, &stdin.clone()).run().unwrap();
+    println!("cycle-tracker-end: execute");
 
     // Generate the proof for the given program and input.
     let (pk, vk) = client.setup(ELF);
-    let mut proof = client.prove(&pk, stdin).run().unwrap();
+    let mut proof = client.prove(&pk, &stdin).run().unwrap();
+
+    println!("cycle-tracker-start: prove");
+    println!("cycle-tracker-end: prove");
 
     println!("generated proof");
 
