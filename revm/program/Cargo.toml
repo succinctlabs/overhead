@@ -1,0 +1,17 @@
+[workspace]
+[package]
+name = "revm-program"
+version = "1.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+# Sp1
+sp1-zkvm = "4.1.0"
+
+# EVM
+revm-interpreter = "9.0.0"
+revm = { version = "13.0.0", features = ["serde"], default-features = false }
+
+# Misc
+hex = "0.4.3"

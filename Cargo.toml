@@ -1,0 +1,23 @@
+[workspace]
+members = [
+  "wasmi-fibonacci/script",
+  "wain-fibonacci/script",
+  "fibonacci-32/script",
+  "fibonacci-32/program",
+  "fibonacci-64/script",
+  "fibonacci-64/program",
+  "fibonacci-128/script",
+  "fibonacci-128/program",
+  "revm/script",
+]
+resolver = "2"
+
+[workspace.package]
+version = "1.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+sp1-zkvm = "4.1.0"
+sp1-sdk = "4.1.0"
+sp1-build = "4.1.0"
+sp1-derive = "4.1.0"

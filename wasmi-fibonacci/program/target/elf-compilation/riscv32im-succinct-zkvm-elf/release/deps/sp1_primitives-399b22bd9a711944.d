@@ -1,0 +1,10 @@
+/Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/deps/libsp1_primitives-399b22bd9a711944.rmeta: /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/lib.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/consts.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/io.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/types.rs
+
+/Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/deps/libsp1_primitives-399b22bd9a711944.rlib: /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/lib.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/consts.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/io.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/types.rs
+
+/Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/deps/sp1_primitives-399b22bd9a711944.d: /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/lib.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/consts.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/io.rs /Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/types.rs
+
+/Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/lib.rs:
+/Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/consts.rs:
+/Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/io.rs:
+/Users/ksk/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sp1-primitives-4.1.4/src/types.rs:
