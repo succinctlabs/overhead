@@ -1,1 +1,0 @@
-/Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/wasmi-fibonacci-program: /Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/src/../../../fib.wasm /Users/ksk/Desktop/Succinct/wasm-exps/wasmi-fibonacci/program/src/main.rs

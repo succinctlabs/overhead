@@ -1,1 +1,0 @@
-/Users/ksk/Desktop/Succinct/overhead/wain-fibonacci/program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/wain-fibonacci-program: /Users/ksk/Desktop/Succinct/overhead/wain-fibonacci/program/src/../../../fib.wasm /Users/ksk/Desktop/Succinct/overhead/wain-fibonacci/program/src/main.rs
