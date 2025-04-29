@@ -3998,6 +3998,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "revm-128-optimized-program"
+version = "1.1.0"
+dependencies = [
+ "hex",
+ "revm",
+ "revm-interpreter",
+ "sp1-zkvm",
+]
+
+[[package]]
+name = "revm-128-optimized-script"
+version = "1.1.0"
+dependencies = [
+ "sp1-build",
+ "sp1-sdk",
+]
+
+[[package]]
 name = "revm-128-program"
 version = "1.1.0"
 dependencies = [
@@ -4016,6 +4034,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "revm-32-optimized-program"
+version = "1.1.0"
+dependencies = [
+ "hex",
+ "revm",
+ "revm-interpreter",
+ "sp1-zkvm",
+]
+
+[[package]]
+name = "revm-32-optimized-script"
+version = "1.1.0"
+dependencies = [
+ "sp1-build",
+ "sp1-sdk",
+]
+
+[[package]]
 name = "revm-32-program"
 version = "1.1.0"
 dependencies = [
@@ -4027,6 +4063,24 @@ dependencies = [
 
 [[package]]
 name = "revm-32-script"
+version = "1.1.0"
+dependencies = [
+ "sp1-build",
+ "sp1-sdk",
+]
+
+[[package]]
+name = "revm-64-optimized-program"
+version = "1.1.0"
+dependencies = [
+ "hex",
+ "revm",
+ "revm-interpreter",
+ "sp1-zkvm",
+]
+
+[[package]]
+name = "revm-64-optimized-script"
 version = "1.1.0"
 dependencies = [
  "sp1-build",

@@ -18,6 +18,13 @@ members = [
   "revm-64/program",
   "revm-128/script",
   "revm-128/program",
+  "revm-32-optimized/program",
+  "revm-32-optimized/script",
+  "revm-64-optimized/program",
+  "revm-64-optimized/script",
+  "revm-128-optimized/program",
+  "revm-128-optimized/script",
+
 ]
 resolver = "2"
 

@@ -1,7 +1,10 @@
+// These two lines are necessary for the program to properly compile.
+//
+// Under the hood, we wrap your main function with some extra code so that it behaves properly
+// inside the zkVM.
 #![no_main]
 sp1_zkvm::entrypoint!(main);
-
-use std::u128;
+use std::u64;
 
 use revm::primitives::Bytes;
 use revm::primitives::{Bytecode, CancunSpec};
@@ -11,22 +14,22 @@ use revm_interpreter::DummyHost;
 use revm_interpreter::{Contract, Interpreter, EMPTY_SHARED_MEMORY};
 
 /// The bytecode we want to execute inside the EVM.
-/// This should be compiled from a contract with `function fib(uint128)`
-const BYTECODE_STR: &str = "608060405234801561000f575f5ffd5b5060043610610029575f3560e01c8063923998ab1461002d575b5f5ffd5b61004760048036038101906100429190610149565b61005d565b6040516100549190610183565b60405180910390f35b5f5f826fffffffffffffffffffffffffffffffff160361007f575f90506100fb565b5f60019050600191505f600290505b836fffffffffffffffffffffffffffffffff16816fffffffffffffffffffffffffffffffff1610156100f8575f6f7fffffffffffffffffffffffffffffff84846100d891906101c9565b6100e29190610239565b905083925080935050808060010191505061008e565b50505b919050565b5f5ffd5b5f6fffffffffffffffffffffffffffffffff82169050919050565b61012881610104565b8114610132575f5ffd5b50565b5f813590506101438161011f565b92915050565b5f6020828403121561015e5761015d610100565b5b5f61016b84828501610135565b91505092915050565b61017d81610104565b82525050565b5f6020820190506101965f830184610174565b92915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601160045260245ffd5b5f6101d382610104565b91506101de83610104565b925082820190506fffffffffffffffffffffffffffffffff8111156102065761020561019c565b5b92915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601260045260245ffd5b5f61024382610104565b915061024e83610104565b92508261025e5761025d61020c565b5b82820690509291505056fea2646970667358221220d4b542f2594fc62381ab74f670e1c8cd019d7ae383f15787e8ccabe95d479eac64736f6c634300081d0033";
-
+/// This is compiled from `../../../fib.sol` using Remix, an online solidity compiler.
+const BYTECODE_STR: &str = "608060405234801561000f575f80fd5b5060043610610029575f3560e01c8063c6c2ea171461002d575b5f80fd5b610047600480360381019061004291906100f1565b61005d565b604051610054919061013a565b60405180910390f35b5f80820361006d575f90506100b5565b5f600190505f600190505f600290505b848110156100ae575f611eef8061009757610096610153565b5b83850890508293508092505080600101905061007d565b5080925050505b919050565b5f80fd5b5f819050919050565b6100d0816100be565b81146100da575f80fd5b50565b5f813590506100eb816100c7565b92915050565b5f60208284031215610106576101056100ba565b5b5f610113848285016100dd565b91505092915050565b5f63ffffffff82169050919050565b6101348161011c565b82525050565b5f60208201905061014d5f83018461012b565b92915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601260045260245ffdfea26469706673582212202a5a8adeb76d503bd9ce8b5fa9bfdac5fa9b9301e783c1be2bbef467fbf9559b64736f6c634300081a0033";
 pub fn main() {
     // Write n to public input.
     println!("cycle-tracker-start: set up input");
-    let n = sp1_zkvm::io::read::<u128>();
+    let n = sp1_zkvm::io::read::<u32>();
     sp1_zkvm::io::commit(&n);
 
     // First, we need to format the call data.
-    // 
+    //
     // The call data starts with the function selector.
-    let mut call_data_raw = hex::decode("923998ab").unwrap();
+    let mut call_data_raw = hex::decode("c6c2ea17").unwrap();
+
     // Then, we append the padded value of n
     let mut padded_bytes = [0u8; 32];
-    padded_bytes[16..32].copy_from_slice(&n.to_be_bytes()); // pad u128 to 32 bytes
+    padded_bytes[28..32].copy_from_slice(&n.to_be_bytes());
     call_data_raw.extend(padded_bytes);
     let input = Bytes::from(call_data_raw);
 
@@ -45,14 +48,14 @@ pub fn main() {
             bytecode,
             ..Default::default()
         },
-        u128::MAX as u64,
+        u64::MAX,
         true,
     );
 
     // The Revm interpreter requires a host that stores information about the execution context.
     // Since we're only executing a pure function, we set up a dummy host.
-    let mut host = DummyHost::default();
-    
+    let mut host = crate::DummyHost::default();
+
     // We get an instruction table from the Cancun Spec.
     let table: &InstructionTable<DummyHost> =
         &revm_interpreter::opcode::make_instruction_table::<DummyHost, CancunSpec>();
@@ -63,10 +66,7 @@ pub fn main() {
     let raw_out = interp.run(EMPTY_SHARED_MEMORY, table, &mut host);
     println!("cycle-tracker-end: interpreter");
 
-    // Decode result as u128.
     let out: Vec<u8> = raw_out.into_result_return().unwrap().output.into();
-    let result = u128::from_be_bytes(out[16..32].try_into().unwrap());
-
     // Commit to the output.
-    sp1_zkvm::io::commit(&result);
+    sp1_zkvm::io::commit(&out);
 }

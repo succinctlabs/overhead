@@ -31,12 +31,14 @@ The setup costs are roughly fixed, and the "run interpreter" part is responsible
 | Baseline        | --           | --             | --               | 16,947       |
 | Wasmi           | 33,767       | 2,909          | 307,625          | 347,000      |
 | Revm            | 43,474       | 10,961         | 9,018,117        | 9,080,285    |
+| Revm (optimized)| 32,531       | 10,961         | 2,398,175        | 2,449,400    |
 
 | Experiment: u64 | Set up input | Set up runtime | Interpreter loop | Total cycles |
 |-----------------|--------------|----------------|------------------|--------------|
 | Baseline        | --           | --             | --               | 124,947      |
 | Wasmi           | 34,050       | 2,910          | 3,873,431        | 3,913,090    |
 | Revm            | 44,934       | 10,961         | 91,478,766       | 91,537,500   |
+| Revm (optimized)| 32,091       | 10,961         | 23,885,232       | 23,940,971   |
 
 
 | Experiment:u128 | Set up input | Set up runtime | Interpreter loop | Total cycles |
@@ -44,11 +46,11 @@ The setup costs are roughly fixed, and the "run interpreter" part is responsible
 | Baseline        | --           | --             | --               | 1,204,947    |
 | Wasmi           | 34,050       | 2,910          | 38,745,658       | 38,785,317   |
 | Revm            | 43,473       | 10,961         | 1,002,027,202    | 1,002,088,904|
-
+| Revm (optimized)| 33,817       | 10,961         | 237,555,380      | 237,603,026  | 
 
 ## Other notes
 
-`fib-32.sol`,  `fib-64.sol`,  and `fib-128.sol` contain the smart contracts that are compiled to evm bytecode for revm. Wasmi doesn't support 128-bit integer types, so we substitute with u64.
+`fib-32.sol`,  `fib-64.sol`,  and `fib-128.sol` contain the smart contracts that are compiled to evm bytecode for revm. Wasmi doesn't support 128-bit integer types, so we substitute with u64. The Solidity optimizations for the revm benchmarks were suggested in [this](https://ethereum-magicians.org/t/long-term-l1-execution-layer-proposal-replace-the-evm-with-risc-v/23617/99) post. 
 
 The moduli used are: 
 

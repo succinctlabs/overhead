@@ -6,7 +6,7 @@ const ELF: &[u8] = include_bytes!("../../program/elf/riscv32im-succinct-zkvm-elf
 fn main() {
     let client = ProverClient::from_env();
     let mut stdin = SP1Stdin::new();
-    let n = 100000u128;  // Using u128 for the input
+    let n = 100000u128; 
     stdin.write(&n);
     
     // Just execute and check cycles
