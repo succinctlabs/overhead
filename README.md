@@ -50,7 +50,7 @@ The setup costs are roughly fixed, and the "run interpreter" part is responsible
 
 ## Other notes
 
-`fib-32.sol`,  `fib-64.sol`,  and `fib-128.sol` contain the smart contracts that are compiled to evm bytecode for revm. Wasmi doesn't support 128-bit integer types, so we substitute with u64. The Solidity optimizations for the revm benchmarks were suggested in [this](https://ethereum-magicians.org/t/long-term-l1-execution-layer-proposal-replace-the-evm-with-risc-v/23617/99) post. 
+`fib-32-optimized.sol`,  `fib-64-optimized.sol`,  and `fib-128-optimized.sol` contain the smart contracts that are compiled to evm bytecode for the Revm (optimized) benchmarks. Wasmi doesn't support 128-bit integer types, so we substitute with u64. The Solidity optimizations for the revm benchmarks were suggested in [this](https://ethereum-magicians.org/t/long-term-l1-execution-layer-proposal-replace-the-evm-with-risc-v/23617/99) post. 
 
 The moduli used are: 
 
